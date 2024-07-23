@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/recipe-finder/static/css/main.13262864.css",
-    "main.js": "/recipe-finder/static/js/main.afae50c1.js",
+    "main.js": "/recipe-finder/static/js/main.ebf150c6.js",
     "index.html": "/recipe-finder/index.html",
     "main.13262864.css.map": "/recipe-finder/static/css/main.13262864.css.map",
-    "main.afae50c1.js.map": "/recipe-finder/static/js/main.afae50c1.js.map"
+    "main.ebf150c6.js.map": "/recipe-finder/static/js/main.ebf150c6.js.map"
   },
   "entrypoints": [
     "static/css/main.13262864.css",
-    "static/js/main.afae50c1.js"
+    "static/js/main.ebf150c6.js"
   ]
 }
