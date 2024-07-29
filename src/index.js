@@ -1,14 +1,15 @@
-// src/index.js
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
 
-ReactDOM.render(
-  <BrowserRouter>
+const root = createRoot(document.getElementById('root')); // Create a root
+
+root.render(
+  <Router basename={process.env.PUBLIC_URL}>
     <App />
-  </BrowserRouter>,
-  document.getElementById('root')
+  </Router>
 );

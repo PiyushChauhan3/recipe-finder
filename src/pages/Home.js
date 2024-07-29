@@ -5,12 +5,13 @@ const Home = () => {
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [topRecipes, setTopRecipes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     const fetchTopRecipes = async () => {
       const API_KEY = "36d47ee7767b4b35befa473f9de06305";
-            // const API_KEY = 'd56852e599e94e3c86946f4800e399f2';
-
+        // const API_KEY = 'd56852e599e94e3c86946f4800e399f2';
       try {
         const response = await fetch(
           `https://api.spoonacular.com/recipes/random?number=6&apiKey=${API_KEY}`
@@ -28,7 +29,9 @@ const Home = () => {
     if (query) {
       const fetchRecipes = async () => {
         const API_KEY = "36d47ee7767b4b35befa473f9de06305";
-              // const API_KEY = 'd56852e599e94e3c86946f4800e399f2';
+          // const API_KEY = 'd56852e599e94e3c86946f4800e399f2';
+        setLoading(true);
+        setNotFound(false);
 
         try {
           const response = await fetch(
@@ -36,8 +39,13 @@ const Home = () => {
           );
           const data = await response.json();
           setRecipes(data.results || []);
+          setLoading(false);
+          if (data.results.length === 0) {
+            setNotFound(true);
+          }
         } catch (error) {
           console.error("Error fetching recipes:", error);
+          setLoading(false);
         }
       };
       fetchRecipes();
@@ -53,7 +61,9 @@ const Home = () => {
 
     const fetchRecipes = async () => {
       const API_KEY = "36d47ee7767b4b35befa473f9de06305";
-            // const API_KEY = 'd56852e599e94e3c86946f4800e399f2';
+        // const API_KEY = 'd56852e599e94e3c86946f4800e399f2';
+      setLoading(true);
+      setNotFound(false);
 
       try {
         const response = await fetch(
@@ -61,8 +71,13 @@ const Home = () => {
         );
         const data = await response.json();
         setRecipes(data.results || []);
+        setLoading(false);
+        if (data.results.length === 0) {
+          setNotFound(true);
+        }
       } catch (error) {
         console.error("Error fetching recipes:", error);
+        setLoading(false);
       }
     };
     fetchRecipes();
@@ -70,7 +85,6 @@ const Home = () => {
   };
 
   return (
-    
     <div className="container">
       <h1 className="text-center my-4">Recipe Finder</h1>
       <form onSubmit={handleSearch} className="mb-4">
@@ -111,8 +125,12 @@ const Home = () => {
           </div>
         </div>
       </form>
-      
-      {recipes.length > 0 && (
+
+      {loading && <div className="loading">Loading recipes...</div>}
+      {!loading && notFound && (
+        <div className="not-found">No recipes found.</div>
+      )}
+      {!loading && recipes.length > 0 && (
         <div className="search-results">
           <h2 className="my-4">Search Results</h2>
           <RecipeList recipes={recipes} />
