@@ -5,19 +5,33 @@ import { useParams } from 'react-router-dom';
 const RecipeDetail = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchRecipe = async () => {
-      // const API_KEY = 'd56852e599e94e3c86946f4800e399f2';
-      const API_KEY = '36d47ee7767b4b35befa473f9de06305';
-      const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`);
-      const data = await response.json();
-      setRecipe(data);
+      try {
+              // const API_KEY = 'd56852e599e94e3c86946f4800e399f2';
+              
+
+        const API_KEY = '36d47ee7767b4b35befa473f9de06305';
+        const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setRecipe(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchRecipe();
   }, [id]);
 
-  if (!recipe) return <div>Loading...</div>;
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="container">
