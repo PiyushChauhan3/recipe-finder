@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -16,13 +16,11 @@ function App() {
         <div className="wave"></div>
       </div>
       <Navbar />
-      <Router basename={process.env.PUBLIC_URL}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/recipe/:id" element={<RecipeDetail />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/recipe/:id" element={<RecipeDetail />} />
+      </Routes>
       <Footer />
     </div>
   );

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import RecipeList from "../components/RecipeList";
 import { Link } from 'react-router-dom';
-
+import RecipeList from "../components/RecipeList";
 
 const Home = () => {
   const [query, setQuery] = useState("");
@@ -13,7 +12,6 @@ const Home = () => {
   useEffect(() => {
     const fetchTopRecipes = async () => {
       const API_KEY = "36d47ee7767b4b35befa473f9de06305";
-      // const API_KEY = 'd56852e599e94e3c86946f4800e399f2';
       try {
         const response = await fetch(
           `https://api.spoonacular.com/recipes/random?number=6&apiKey=${API_KEY}`
@@ -31,7 +29,6 @@ const Home = () => {
     if (query) {
       const fetchRecipes = async () => {
         const API_KEY = "36d47ee7767b4b35befa473f9de06305";
-        // const API_KEY = 'd56852e599e94e3c86946f4800e399f2';
         setLoading(true);
         setNotFound(false);
 
@@ -63,7 +60,6 @@ const Home = () => {
 
     const fetchRecipes = async () => {
       const API_KEY = "36d47ee7767b4b35befa473f9de06305";
-      // const API_KEY = 'd56852e599e94e3c86946f4800e399f2';
       setLoading(true);
       setNotFound(false);
 
