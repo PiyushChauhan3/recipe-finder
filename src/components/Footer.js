@@ -6,8 +6,8 @@ const Footer = () => {
       <div className="container">
         <p>&copy; 2024 Recipe Finder. All rights reserved.</p>
         <p>
-          <a href="/about">About Us</a> | 
-          <a href="mailto:contact@recipefinder.com">Contact</a>
+          <a href="/about" className='li-a'>About Us</a> | 
+          <a href="mailto:contact@recipefinder.com" className='li-a'>Contact</a>
         </p>
       </div>
     </footer>

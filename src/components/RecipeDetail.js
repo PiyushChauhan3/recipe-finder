@@ -36,15 +36,15 @@ const RecipeDetail = () => {
   return (
     <div className="container">
       <h1 className="my-4">{recipe.title}</h1>
-      <img src={recipe.image} alt={recipe.title} className="img-fluid" />
-      <h3 className="mt-4">Ingredients:</h3>
+      <img src={recipe.image} alt={recipe.title} className="img-fluid img-css" />
+      <h3 className="ingre">Ingredients:</h3>
       <ul>
         {recipe.extendedIngredients.map((ingredient) => (
-          <li key={ingredient.id}>{ingredient.original}</li>
+          <li key={ingredient.id} className='li-ingre'>{ingredient.original}</li>
         ))}
       </ul>
       <h3 className="mt-4">Instructions:</h3>
-      <p>{recipe.instructions}</p>
+      <p className='li-ingre' dangerouslySetInnerHTML={{ __html: recipe.instructions }}></p>
     </div>
   );
 };
